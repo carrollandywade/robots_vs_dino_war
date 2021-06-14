@@ -3,7 +3,7 @@ from robot import Robot
 
 class Fleet:
     def __init__(self):
-        self.robot = []
+        self.robots = []
         self.assemble_fleet()
 
 
@@ -11,9 +11,9 @@ class Fleet:
         walle = Robot("Walle", 100, 10, 10)
         burnie = Robot("Burnie", 100, 10, 10)
         mo = Robot("Mo", 100, 10, 10)
-        self.robot.append(walle)
-        self.robot.append(burnie)
-        self.robot.append(mo)
+        self.robots.append(walle)
+        self.robots.append(burnie)
+        self.robots.append(mo)
 
 
 
