@@ -8,6 +8,8 @@ class Dinosaur:
         self.attack_power = attack_power
 
 
-    def set_type(self):
-        self.type = input("Enter Dinosaur type:")
-        print("Dinosaur type: ", self.type)
+
+    def attack(self):
+        self.health -= 10
+        pass
+
