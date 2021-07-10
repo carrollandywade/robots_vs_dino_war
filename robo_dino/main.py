@@ -1,10 +1,6 @@
 from battlefield import Battlefield
 
+battlefield = Battlefield()
+battlefield.run()
 
-if __name__ == '__main__':
-    battlefield = Battlefield()
-    battlefield.run()
-
-
-
-
+print("GAME OVER")

@@ -6,7 +6,6 @@ class Fleet:
         self.robots = []
         self.assemble_fleet()
 
-
     def assemble_fleet(self):
         walle = Robot("Walle", 100, 10, 10)
         burnie = Robot("Burnie", 100, 10, 10)
