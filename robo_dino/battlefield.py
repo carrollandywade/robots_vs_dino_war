@@ -11,6 +11,7 @@ class Battlefield:
         self.battlefield_welcome()
         self.introduce_fighters()
         self.battle()
+        self.display_winners()
 
     def battlefield_welcome(self):
         print('Welcome to Robots vs Dinosaurs!')
@@ -31,7 +32,7 @@ class Battlefield:
         print('health is ' + str(int(self.herd.dinosaurs[2].health)))
 
     def battle(self):
-        while len(self.fleet.robots) > 0 and len(self.herd.dinosaurs > 0): # while both side are still alive
+        while len(self.fleet.robots) > 0 and len(self.herd.dinosaurs) > 0:
             self.dino_turn()
             if len(self.fleet.robots) > 0:
                 self.robo_turn()
@@ -39,36 +40,44 @@ class Battlefield:
         #loop until one side wins
 
     def dino_turn(self):
-
-        print("choose dino to attack")
+        print("Choose a dinosaur to unleash")
         self.show_dino_opponent_options()
         chosen_dino = int(input())
+        print("Choose a target for dinosaur to attack")
         self.show_robo_opponent_options()
         chosen_robot = int(input())
-        self.fleet.robots[0].attack(self.herd.dinosaurs[0])
-        #choose dino attacker
-        #choose dino defender
-        #dino attacks robot
+        self.herd.dinosaurs[chosen_dino].attack(self.fleet.robots[chosen_robot])
         if self.fleet.robots[chosen_robot].health <= 0:
-            print(f"{self.herd.dinosaurs[chosen_dino]} has died")
+            print(f"{self.fleet.robots[chosen_robot]} has been destroyed!")
             self.fleet.robots.remove(self.fleet.robots[chosen_robot])
 
     def robo_turn(self):
-        #choose robot attacker
-        #choose robot defender
-        #robot attacks dino
-        pass
+        print("Choose a robot to program")
+        self.show_robo_opponent_options()
+        chosen_robot = int(input())
+        print("Program a target for robot to acquisition")
+        self.show_dino_opponent_options()
+        chosen_dino = int(input())
+        self.fleet.robots[chosen_robot].attack(self.herd.dinosaurs[chosen_dino])
+        if self.herd.dinosaurs[chosen_dino].health <= 0:
+            print(f"{self.fleet.robots[chosen_dino]} has been exterminated.")
+            self.herd.dinosaurs.remove(self.herd.dinosaurs[chosen_dino])
 
     def show_dino_opponent_options(self):
         dino_index = 0
         for dino in self.herd.dinosaurs:
-            print(f"{dino.type}")
-        pass
+            print(f"{dino_index} for {dino.type}")
+            dino_index += 1
 
     def show_robo_opponent_options(self):
-        pass
+        robot_index = 0
+        for robot in self.fleet.robots:
+            print(f"{robot_index} for {robot.name}")
+            robot_index += 1
 
     def display_winners(self):
+        print("The battle has been won!")
         if len(self.fleet.robots) > 0:
-            print("robots winner")
-
+            print("robots win!")
+        else:
+            print("Dinosaurs win!")
